@@ -45,23 +45,25 @@ const Welcome = () => {
         </TouchableOpacity>
       </View>
 
-    <View style={styles.tabsContainer}>
-      <FlatList 
-        data={jobTypes}
-        renderItem={({ item }) => (
-          <TouchableOpacity 
-            style={styles.tab(activeJobType, item)}
-            onPress={() => {
-              setActiveJobType(item);
-              router.push(`/search/${item}`)
-            }}
-          >
-            <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
-
+      <View style={styles.tabsContainer}>
+        <FlatList 
+          data={jobTypes}
+          renderItem={({ item }) => (
+            <TouchableOpacity 
+              style={styles.tab(activeJobType, item)}
+              onPress={() => {
+                setActiveJobType(item);
+                router.push(`/search/${item}`)
+              }}
+            >
+              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={item => item}
+          contentContainerStyle={{ columnGap: SIZES.small}}
+          horizontal
+        />
+      </View>
     </View>
   )
 }
